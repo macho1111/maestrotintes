@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+    
+{% block head %}
+    <title>Apparel List</title>
+    <style>
+        .apparel-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .apparel-item {
+            margin: 10px;
+            text-align: center;
+        }
+        .apparel-item img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .apparel-item img:hover {
+            transform: scale(1.1);
+        }
+        .apparel-info {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .apparel-item:hover .apparel-info {
+            opacity: 1;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<h1>黒染め選択フォーム</h1>
+    
+<div class="apparel-container">
+    {% for apparel in apparels %}
+    <div class="apparel-item">
+        <a href="{% url 'apparel_detail' apparel.apparel_id %}">
+            <img src="{{ apparel.image.url }}" alt="{{ apparel.name }}">
+        </a>
+        <div class="apparel-info">
+            <h3>{{ apparel.name }}</h3>
+            <p>Price: {{ apparel.price }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

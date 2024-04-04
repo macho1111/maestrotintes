@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+    
+{% block head %}
+    <title>Consent Form</title>
+    <script>
+        function checkConsent() {
+            var consentCheckboxes = document.querySelectorAll('.consent-checkbox');
+            for (var i = 0; i < consentCheckboxes.length; i++) {
+                if (!consentCheckboxes[i].checked) {
+                    alert("すべての同意にチェックしてください。");
+                    return false; // 次のページへの移動をブロック
+                }
+            }
+            return true; // すべての同意が得られた場合、次のページへの移動を許可
+        }
+    </script>
+{% endblock %}
+{% block content %}
+    <h1>染め直し注意事項</h1>
+    <form action="{% url 'apparel_list' %}" method="get" onsubmit="return checkConsent()">
+        {% csrf_token %}
+        {% for consent_text in consent_texts %}
+        <div class="consent">
+            <label>{{ consent_text.content }}</label>
+            <input type="checkbox" class="consent-checkbox" id="consent{{ consent_text.text_id }}" required>
+        </div>
+        {% endfor %}
+        <button type="submit">染め直し注文へ</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+    
+{% block content %}
+    <h1>注文書詳細</h1>
+    <p>注文ID: {{ product.product_id }}</p>
+    <p>素材: {{ product.material }}</p>
+    <p>種類: {{ product.apparel }}</p>
+    <p>価格: {{ product.apparel.price }}</p>
+    {% if product.image %}
+    <p>アップロード画像</p>
+    <img src="{{ product.image.url }}" alt="Product Image">
+    {% endif %}
+    <p>注文書作成日: {{ product.registration_date }}</p>
+    <p>注文書更新日: {{ product.updated_date }}</p>
+{% endblock %}

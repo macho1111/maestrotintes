@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+    
+{% block content %}
+    <h2>黒染め注文フォーム</h2>
+    <table>
+        <tr>
+            <th>服の種類　</th>
+            <th>値段</th>
+        </tr>
+        <tr>
+            <td>{{ apparel.name }}</td>
+            <td>{{ apparel.price }}</td>
+        </tr>
+    </table>
+    <form method="post" action="{% url 'create_product' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="apparel_id" value="{{ apparel.apparel_id }}">
+        <p>服の素材を選択してください</p>
+        <select name="material_id">
+            <option value="" selected disabled>選択してください</option>
+            {% for material in materials %}
+                <option value="{{ material.material_id }}">{{ material.name }}</option>
+            {% endfor %}
+        </select>
+        <div id="imageFields">
+            <p>画像アップロード(任意)
+            <br>染めたい衣類の画像を添付してください  
+            </p>
+            <div class="imageField">
+                <input type="file" name="image">
+            </div>
+        </div>
+        <button type="submit">注文</button>
+    </form>
+{% endblock %}
