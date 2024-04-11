@@ -5,7 +5,7 @@
     <table>
         <thead>
             <tr>
-                <th>注文ID</th>
+                <th>注文ID　</th>
                 <th>素材</th>
                 <th>種類</th>
                 <th>価格</th>
@@ -16,7 +16,7 @@
         <tbody>
             {% for product in products %}
             <tr>
-                <td><a href="{% url 'product_detail' product.product_id %}">{{ product.product_id }}　</a></td>
+                <td><a href="{% url 'product_detail' product.slug %}">{{ product.product_id }}　</a></td>
                 <td>{{ product.material }}　</td>
                 <td>{{ product.apparel }}　</td>
                 <td>{{ product.apparel.price }}　</td>

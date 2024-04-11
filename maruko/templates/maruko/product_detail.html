@@ -12,4 +12,27 @@
     {% endif %}
     <p>注文書作成日: {{ product.registration_date }}</p>
     <p>注文書更新日: {{ product.updated_date }}</p>
+    <h3>ユーザー情報</h3>
+    {% if product.user.name %}
+    <p>ユーザー名: {{ product.user.name }}</p>
+    {% else %}
+    <p>ユーザー名: アカウント設定ページで入力してください</p>
+    {% endif %}
+    {% if product.user.furigana %}
+    <p>フリガナ: {{ product.user.furigana }}</p>
+    {% else %}
+    <p>フリガナ: アカウント設定ページで入力してください</p>
+    {% endif %}
+    {% if product.user.phone_number %}
+    <p>電話番号: {{ product.user.phone_number }}</p>
+    {% else %}
+    <p>電話番号: アカウント設定ページで入力してください</p>
+    {% endif %}
+    <p>メールアドレス: {{ product.user }}</p>
+    {% if product.user.address %}
+    <p>住所: {{ product.user.address }}</p>
+    {% else %}
+    <p>住所: アカウント設定ページで入力してください</p>
+    {% endif %}
+    <a href="{% url 'profile_edit' %}">アカウント設定へ</a>
 {% endblock %}

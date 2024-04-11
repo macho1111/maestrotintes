@@ -1,0 +1,31 @@
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        
+        <div>
+            <a class="btn btn-outline-light" href={% url "consent_view" %}>注文フォーム</a>
+        </div>
+        <div>
+            <a class="btn btn-outline-light" href={% url "product_list" %}>注文書一覧</a>
+        </div>
+        <div class="text-light nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ request.user }}
+            </a>
+            <ul class="dropdown-menu endposition" aria-labelledby="navbarDropdown">
+            {% if request.user.is_authenticated %}
+                <li><a class="dropdown-item" href={% url "profile_edit" %}>アカウント設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href={% url "account_change_password" %}>パスワード変更</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href={% url "account_email" %}>メールアドレス設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href={% url "account_logout" %}>ログアウト</a></li>
+            {% else %}
+                <li><a class="dropdown-item" href={% url "account_login" %}>ログイン</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href={% url "account_signup" %}>サインアップ</a></li>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+</nav>

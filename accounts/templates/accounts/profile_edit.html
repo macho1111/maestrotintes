@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>ユーザー情報編集</h2>
+  <form id="update-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="update-button">更新</button>
+  </form>
+
+  <script>
+    document.getElementById('update-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // デフォルトのフォーム送信を停止
+      // フォームが送信されたら、ポップアップメッセージを表示
+      alert('更新しました。');
+      // フォームを送信
+      this.submit();
+    });
+  </script>
+{% endblock %}

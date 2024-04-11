@@ -1,6 +1,18 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
+from utils.random_string import random_string_generator
+User = get_user_model()
 # Create your models here.
+
+def slug_maker():
+    repeat = True
+    while repeat:
+        new_slug = random_string_generator()
+        counter = Product.objects.filter(slug=new_slug).count()
+        if counter == 0:
+            repeat = False
+    return new_slug
+
 class Material(models.Model):
     material_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, default="")
@@ -24,6 +36,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images', null=True, blank=True)
     registration_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=20, blank=True, default=slug_maker)
 
     def __str__(self):
         return f"{self.material} - {self.apparel} - {self.apparel.price}"
