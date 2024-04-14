@@ -12,7 +12,11 @@
             </div>
             <div class="text-light nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ request.user }}
+                    {% if request.user.is_authenticated %}
+                        {{ request.user }}
+                    {% else %}
+                        ログインしてください
+                    {% endif %}
                 </a>
                 <ul class="dropdown-menu endposition" aria-labelledby="navbarDropdown">
                 {% if request.user.is_authenticated %}
