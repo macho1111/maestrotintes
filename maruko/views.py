@@ -61,6 +61,12 @@ class ProductListView(OwnerOnly, ListView):
     model = Product
     template_name = 'maruko/product_list.html'
     context_object_name = 'products'
+    
+    def dispatch(self, request, *args, **kwargs):
+        # ログインしていない場合はログインページにリダイレクト
+        if not request.user.is_authenticated:
+            return redirect('account_login')
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         if self.request.user.is_staff:

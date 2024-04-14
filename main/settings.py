@@ -171,3 +171,4 @@ ACCOUNT_LOGOUT_ON_GET = True
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap4'
+ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
