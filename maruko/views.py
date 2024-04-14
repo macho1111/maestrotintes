@@ -5,6 +5,12 @@ from django.views.generic.base import View
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
+def howto(request):
+    return render(request, 'maruko/howto.html')
+
+def product_comp(request):
+    return render(request, 'maruko/product_comp.html')
+
 def apparel_list(request):
     apparels = Apparel.objects.all()
     return render(request, 'maruko/apparel_list.html', {'apparels': apparels})
@@ -41,8 +47,8 @@ def create_product(request):
             # Product インスタンスに画像を関連付けて保存
             product.image = image
             product.save()
-        return redirect('product_list')  # 注文が完了したらアイテムリストページにリダイレクトする
-    return redirect('product_list')  # POSTリクエスト以外はアイテムリストページにリダイレクトする
+        return redirect('product_comp')  # 注文が完了したらアイテムリストページにリダイレクトする
+    return redirect('product_comp')  # POSTリクエスト以外はアイテムリストページにリダイレクトする
     
 class OwnerOnly(UserPassesTestMixin):
     def test_func(self):

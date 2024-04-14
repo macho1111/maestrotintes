@@ -38,7 +38,13 @@ class Product(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=20, blank=True, default=slug_maker)
-
+    
+    def get_shipping_cost(self):
+        if self.user.prefecture:
+            return self.user.prefecture.shipping_cost
+        else:
+            return 0
+            
     def __str__(self):
         return f"{self.material} - {self.apparel} - {self.apparel.price}"
 

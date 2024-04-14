@@ -5,7 +5,7 @@ from .models import User
 
 class UserProfileEditView(LoginRequiredMixin, UpdateView):
     model = User
-    fields = ['name', 'furigana', 'address', 'phone_number']  # 編集可能なフィールドを指定
+    fields = ['name', 'furigana','prefecture', 'address', 'phone_number']  # 編集可能なフィールドを指定
     template_name = 'accounts/profile_edit.html'  # ユーザー情報編集ページのテンプレート
     success_url = reverse_lazy('profile_edit')  # 編集が成功した場合のリダイレクト先
 

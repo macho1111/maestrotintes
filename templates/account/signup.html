@@ -1,7 +1,12 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
-    {% trans "Signup" %}
+    
+    <style>
+        h1 {
+          text-align: left;
+        }
+    </style>
 {% endblock head_title %}
 {% block content %}
     {% element h1 %}

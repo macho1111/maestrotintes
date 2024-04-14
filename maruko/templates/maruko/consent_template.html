@@ -2,29 +2,52 @@
     
 {% block head_title %}
     <title>Consent Form</title>
-    <script>
-        function checkConsent() {
-            var consentCheckboxes = document.querySelectorAll('.consent-checkbox');
-            for (var i = 0; i < consentCheckboxes.length; i++) {
-                if (!consentCheckboxes[i].checked) {
-                    alert("すべての同意にチェックしてください。");
-                    return false; // 次のページへの移動をブロック
-                }
-            }
-            return true; // すべての同意が得られた場合、次のページへの移動を許可
-        }
-    </script>
 {% endblock %}
+
 {% block content %}
     <h1>染め直し注意事項</h1>
+    <p class="center">注意事項を確認し、ボタンを押してください。</p>
     <form action="{% url 'apparel_list' %}" method="get" onsubmit="return checkConsent()">
         {% csrf_token %}
         {% for consent_text in consent_texts %}
-        <div class="consent">
-            <label>{{ consent_text.content }}</label>
-            <input type="checkbox" class="consent-checkbox" id="consent{{ consent_text.text_id }}" required>
+        <div class="card">
+
+            <div class="consent">
+                <p id="consent{{ consent_text.text_id }}" style="font-size: 18px;">・{{ consent_text.content }}</p>
+                <button type="button" class="consent-button btn btn-primary" onclick="toggleConsent('{{ consent_text.text_id }}')">了承します</button>
+                <span class="consent-status" style="margin-left: 10px;"></span>
+            </div>
         </div>
         {% endfor %}
-        <button type="submit">染め直し注文へ</button>
+        <div class="center" >
+            <button type="submit" class="btn btn-primary">染め直し注文へ</button>
+        </div>
     </form>
+
+    <script>
+        function toggleConsent(id) {
+            var consentText = document.getElementById('consent' + id);
+            var consentStatus = consentText.nextElementSibling;
+            consentStatus.textContent = 'ありがとうございます！';
+            consentStatus.style.color = 'black'
+            consentStatus.style.backgroundColor = 'pink'
+            // 画像に変更したい場合はここで画像を表示する処理を追加することができます
+        }
+
+        function checkConsent() {
+            var allConsented = true;
+            var consentTexts = document.querySelectorAll('.consent p');
+            for (var i = 0; i < consentTexts.length; i++) {
+                if (consentTexts[i].nextElementSibling.textContent !== 'ありがとうございます！') {
+                    allConsented = false;
+                    break;
+                }
+            }
+            if (!allConsented) {
+                alert("すべての注意事項に了承してください。");
+                return false;
+            }
+            return true;
+        }
+    </script>
 {% endblock %}

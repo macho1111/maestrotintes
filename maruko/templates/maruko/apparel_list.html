@@ -41,7 +41,7 @@
 
 {% block content %}
 <h1>黒染め選択フォーム</h1>
-    
+<p class="center">染めたい衣類を選択してください</p>
 <div class="apparel-container">
     {% for apparel in apparels %}
     <div class="apparel-item">
@@ -50,7 +50,7 @@
         </a>
         <div class="apparel-info">
             <h3>{{ apparel.name }}</h3>
-            <p>Price: {{ apparel.price }}</p>
+            <p>価格: {{ apparel.price }}</p>
         </div>
     </div>
     {% endfor %}

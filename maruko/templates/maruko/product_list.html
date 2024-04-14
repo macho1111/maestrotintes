@@ -1,29 +1,38 @@
 {% extends "base.html" %}
+{% block head_title %}
     
+    <style>
+        .pad {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <h1>注文リスト</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>注文ID　</th>
-                <th>素材</th>
-                <th>種類</th>
-                <th>価格</th>
-                <th>注文書作成日</th>
-                <th>注文書更新日</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td><a href="{% url 'product_detail' product.slug %}">{{ product.product_id }}　</a></td>
-                <td>{{ product.material }}　</td>
-                <td>{{ product.apparel }}　</td>
-                <td>{{ product.apparel.price }}　</td>
-                <td>{{ product.registration_date }}　</td>
-                <td>{{ product.updated_date }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>注文リスト　　　</h1>
+    <div class="pad">
+        <table>
+            <thead>
+                <tr>
+                    <th>注文ID　</th>
+                    <th>素材</th>
+                    <th>種類</th>
+                    <th>価格</th>
+                    <th>注文書作成日</th>
+                    <th>注文書更新日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td><a href="{% url 'product_detail' product.slug %}">{{ product.product_id }}　</a></td>
+                    <td>{{ product.material }}　</td>
+                    <td>{{ product.apparel }}　</td>
+                    <td>{{ product.apparel.price }}　</td>
+                    <td>{{ product.registration_date }}　</td>
+                    <td>{{ product.updated_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

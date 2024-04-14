@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
+{% block head_title %}
+    <title>profile_edit</title>
+    <style>
+      h1 {
+        text-align: left;
+      }
+      .haba {
+        margin-left: 100px;
+      }
+      .habaue {
+        margin-top: 30px;
+      }
+      
+    </style>
+{% endblock %}
 
 {% block content %}
-  <h2>ユーザー情報編集</h2>
-  <form id="update-form" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" id="update-button">更新</button>
-  </form>
-
+  
+  <div class="haba">
+    <h1>アカウント設定</h1>
+    <form id="update-form" method="post" class="habaue">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" id="update-button">更新</button>
+    </form>
+  </div>
   <script>
     document.getElementById('update-form').addEventListener('submit', function(event) {
       event.preventDefault(); // デフォルトのフォーム送信を停止

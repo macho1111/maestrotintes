@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+<title>ご注文から納品までの流れ</title>
+<style>
+    
+    .container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .step {
+        margin-bottom: 30px;
+    }
+
+    .step p {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>ご注文から納品までの流れ</h1>
+    <div class="step">
+        <h2>STEP.1</h2>
+        <p>衣類はご注文IDを記載し、元払いで郵送してください。</p>
+    </div>
+    <div class="step">
+        <h2>STEP.2</h2>
+        <p>衣類の状況、点数や重さを点検させていただき、染め直しが可能かお電話させていただきます。</p>
+    </div>
+    <div class="step">
+        <h2>STEP.3</h2>
+        <p>ご注文内容・金額確定後、洋服の洗い・染色加工を施し、自然乾燥にてお仕上げいたします。</p>
+    </div>
+    <div class="step">
+        <h2>STEP.4</h2>
+        <p>商品を点検し、不備等がないか確認します。仕上がり予定日の前日までにご入金をお願いします。</p>
+    </div>
+    <div class="step">
+        <h2>STEP.5</h2>
+        <p>納品書と合わせて商品を郵送いたします。</p>
+    </div>
+    <div class="contact-info">
+        <h2>古着染め工房 丸幸株式会社</h2>
+        <p>TEL: 0555-23-5562</p>
+        <p>FAX: 0555-23-5426</p>
+        <p>Mail: vb280080-5246@tbz.t-com.ne.jp</p>
+        <p>〒403-0001 山梨県富士吉田市上暮地2222-1</p>
+        <p>営業時間: 10:00~17:00 定休日: 土日祝</p>
+    </div>
+</div>
+{% endblock %}

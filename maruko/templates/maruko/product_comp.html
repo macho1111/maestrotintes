@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+<title>product_comp</title>
+
+{% endblock %}
+{% block content %}
+<h1>ご注文ありがとうございます！</h1>
+<div class="main2">
+    <p>注文書を作成しました。</p>
+    <div>
+    <a href="{% url 'howto' %}">・ご注文から納品までの流れ</a>
+    </div>
+    <div>
+    <a href="{% url 'product_list' %}">・注文書一覧</a>
+    </div>
+</div>
+{% endblock %}

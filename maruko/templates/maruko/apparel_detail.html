@@ -1,7 +1,51 @@
 {% extends "base.html" %}
-    
+
+{% block head_title %}
+    <title>apparel_detail</title>
+    <style>
+        
+        form {
+            margin-top: 30px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .imageField {
+            margin-bottom: 10px;
+        }
+
+        .alert {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .top {
+            margin-top: 30px;
+        }
+
+        @media screen and (max-width: 600px) {
+            th, td {
+                padding: 6px;
+            }
+
+            #submitButton {
+                padding: 8px 16px;
+            }
+        }
+        
+    </style>
+{% endblock %}
+
 {% block content %}
-    <h2>黒染め注文フォーム</h2>
+<h1>黒染め注文フォーム</h1>
+<div class="main2">
     <table>
         <tr>
             <th>服の種類　</th>
@@ -15,23 +59,24 @@
     <form id="orderForm" method="post" action="{% url 'create_product' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name="apparel_id" value="{{ apparel.apparel_id }}">
-        <p>服の素材を選択してください</p>
+        <p>・服の素材を選択してください</p>
         <select id="materialSelect" name="material_id">
             <option value="" selected disabled>選択してください</option>
             {% for material in materials %}
                 <option value="{{ material.material_id }}">{{ material.name }}</option>
             {% endfor %}
         </select>
-        <div id="imageFields">
-            <p>画像アップロード(任意)
-            <br>染めたい衣類の画像を添付してください  
+        <div id="imageFields" class="top">
+            <p>・画像アップロード(任意)
+            <br>染めたい衣類の画像をアップロードしてください  
             </p>
             <div class="imageField">
                 <input type="file" name="image">
             </div>
         </div>
-        <button type="submit" id="submitButton">注文</button>
+        <button type="submit" id="submitButton" class="btn btn-primary">注文書を作成する</button>
     </form>
+</div>
 
     <script>
         document.getElementById("orderForm").addEventListener("submit", function(event) {

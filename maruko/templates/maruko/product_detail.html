@@ -1,38 +1,76 @@
 {% extends "base.html" %}
-    
+
 {% block content %}
     <h1>注文書詳細</h1>
-    <p>注文ID: {{ product.product_id }}</p>
-    <p>素材: {{ product.material }}</p>
-    <p>種類: {{ product.apparel }}</p>
-    <p>価格: {{ product.apparel.price }}</p>
-    {% if product.image %}
-    <p>アップロード画像</p>
-    <img src="{{ product.image.url }}" alt="Product Image">
-    {% endif %}
-    <p>注文書作成日: {{ product.registration_date }}</p>
-    <p>注文書更新日: {{ product.updated_date }}</p>
-    <h3>ユーザー情報</h3>
-    {% if product.user.name %}
-    <p>ユーザー名: {{ product.user.name }}</p>
-    {% else %}
-    <p>ユーザー名: アカウント設定ページで入力してください</p>
-    {% endif %}
-    {% if product.user.furigana %}
-    <p>フリガナ: {{ product.user.furigana }}</p>
-    {% else %}
-    <p>フリガナ: アカウント設定ページで入力してください</p>
-    {% endif %}
-    {% if product.user.phone_number %}
-    <p>電話番号: {{ product.user.phone_number }}</p>
-    {% else %}
-    <p>電話番号: アカウント設定ページで入力してください</p>
-    {% endif %}
-    <p>メールアドレス: {{ product.user }}</p>
-    {% if product.user.address %}
-    <p>住所: {{ product.user.address }}</p>
-    {% else %}
-    <p>住所: アカウント設定ページで入力してください</p>
-    {% endif %}
-    <a href="{% url 'profile_edit' %}">アカウント設定へ</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">注文ID</th>
+                <td>{{ product.product_id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">素材</th>
+                <td>{{ product.material }}</td>
+            </tr>
+            <tr>
+                <th scope="row">種類</th>
+                <td>{{ product.apparel }}</td>
+            </tr>
+            <tr>
+                <th scope="row">価格</th>
+                <td>￥{{ product.apparel.price }}</td>
+            </tr>
+            <tr>
+                <th scope="row">送料</th>
+                <td>￥{{ product.get_shipping_cost }}</td>
+            </tr>
+            <tr>
+                <th scope="row">合計金額</th>
+                <td>￥{{ product.apparel.price|add:product.get_shipping_cost }}</td>
+            </tr>
+            <tr>
+                <th scope="row">アップロード画像</th>
+                <td>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="Product Image">
+                    {% else %}
+                        画像なし
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">注文書作成日</th>
+                <td>{{ product.registration_date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">注文書更新日</th>
+                <td>{{ product.updated_date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">ユーザー名</th>
+                <td>{{ product.user.name|default:"アカウント設定ページで入力してください" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">フリガナ</th>
+                <td>{{ product.user.furigana|default:"アカウント設定ページで入力してください" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">電話番号</th>
+                <td>{{ product.user.phone_number|default:"アカウント設定ページで入力してください" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">メールアドレス</th>
+                <td>{{ product.user }}</td>
+            </tr>
+            <tr>
+                <th scope="row">都道府県</th>
+                <td>{{ product.user.prefecture|default:"アカウント設定ページで入力してください" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">住所</th>
+                <td>{{ product.user.address|default:"アカウント設定ページで入力してください" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'profile_edit' %}" class="btn btn-primary">アカウント設定へ</a>
 {% endblock %}
