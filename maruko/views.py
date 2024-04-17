@@ -52,9 +52,15 @@ def create_product(request):
     
 class OwnerOnly(UserPassesTestMixin):
     def test_func(self):
-        # ユーザーが所有する製品に基づいて制限したい場合
-        product = self.get_queryset().first()  # ロジックに合わせて調整してください
-        return product.user == self.request.user
+        # Check if there are any products in the queryset
+        if self.get_queryset().exists():
+            # Get the first product in the queryset
+            product = self.get_queryset().first()
+            # Check if the product's user attribute matches the request user
+            return product.user == self.request.user
+        else:
+            # If there are no products, return False
+            return redirect('consent_view') 
     
 
 class ProductListView(OwnerOnly, ListView):

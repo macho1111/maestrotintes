@@ -14,13 +14,13 @@
 
             <div class="consent">
                 <p id="consent{{ consent_text.text_id }}" style="font-size: 18px;">・{{ consent_text.content }}</p>
-                <button type="button" class="consent-button btn btn-primary" onclick="toggleConsent('{{ consent_text.text_id }}')">了承します</button>
+                <button type="button" class="btn btn-outline-info" onclick="toggleConsent('{{ consent_text.text_id }}')">了承します</button>
                 <span class="consent-status" style="margin-left: 10px;"></span>
             </div>
         </div>
         {% endfor %}
         <div class="center" >
-            <button type="submit" class="btn btn-primary">染め直し注文へ</button>
+            <button type="submit" class="btn btn-outline-dark">染め直し注文へ</button>
         </div>
     </form>
 
@@ -30,7 +30,7 @@
             var consentStatus = consentText.nextElementSibling;
             consentStatus.textContent = 'ありがとうございます！';
             consentStatus.style.color = 'black'
-            consentStatus.style.backgroundColor = 'pink'
+            consentStatus.style.backgroundColor = '#ffffffff'
             // 画像に変更したい場合はここで画像を表示する処理を追加することができます
         }
 

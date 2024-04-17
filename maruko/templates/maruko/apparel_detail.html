@@ -10,7 +10,7 @@
         th, td {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 12px; /* パディングを大きくする */
         }
 
         th {
@@ -18,25 +18,28 @@
         }
 
         .imageField {
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* 間隔を大きくする */
         }
 
         .alert {
             color: red;
-            margin-top: 10px;
+            margin-top: 20px; /* 間隔を大きくする */
+            font-size: 18px; /* フォントサイズを大きくする */
         }
 
         .top {
-            margin-top: 30px;
+            margin-top: 50px; /* 上部マージンを大きくする */
         }
 
+        /* 画面幅が600px以下の場合のスタイル */
         @media screen and (max-width: 600px) {
             th, td {
-                padding: 6px;
+                padding: 8px; /* パディングを小さくする */
             }
 
             #submitButton {
-                padding: 8px 16px;
+                padding: 12px 24px; /* ボタンのパディングを大きくする */
+                font-size: 16px; /* フォントサイズを大きくする */
             }
         }
         
@@ -74,7 +77,7 @@
                 <input type="file" name="image">
             </div>
         </div>
-        <button type="submit" id="submitButton" class="btn btn-primary">注文書を作成する</button>
+        <button type="submit" id="submitButton" class="btn btn-outline-dark">注文書を作成する</button>
     </form>
 </div>
 
