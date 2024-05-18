@@ -6,7 +6,7 @@ class CustomSignupForm(SignupForm):
     name = forms.CharField(max_length=255, label='名前', required=True)
     furigana = forms.CharField(max_length=255, label='フリガナ', required=True)
     prefecture = forms.ModelChoiceField(queryset=Prefecture.objects.all(), label='都道府県', required=True)
-    address = forms.CharField(widget=forms.Textarea, label='住所', required=True)
+    address = forms.CharField(max_length=255, widget=forms.Textarea, label='住所', required=True)
     phone_number = forms.CharField(max_length=20, label='電話番号', required=True)
 
     def save(self, request):

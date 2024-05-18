@@ -49,7 +49,7 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=255, verbose_name='名前', blank=True, null=True)
     furigana = models.CharField(max_length=255, verbose_name='フリガナ', blank=True, null=True)
     prefecture = models.ForeignKey(Prefecture, verbose_name='都道府県', on_delete=models.SET_NULL, blank=True, null=True, related_name='users')
-    address = models.TextField(verbose_name='住所', blank=True, null=True)
+    address = models.CharField(max_length=255, verbose_name='住所', blank=True, null=True)
     phone_number = models.CharField(max_length=20, verbose_name='電話番号', blank=True, null=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) 
